@@ -5,6 +5,6 @@ const { avatarHandler } = require('../middleware/file.middleware')
 
 const fileRouter = new Router({ prefix: '/upload' })
 
-fileRouter.post('/avatar', avatarHandler, fileController.saveAvatar)
+fileRouter.post('/avatar', verifyAuth, avatarHandler, fileController.saveAvatar)
 
 module.exports = fileRouter
