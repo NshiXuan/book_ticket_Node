@@ -44,7 +44,7 @@ class UserService {
 
   // 获取单个用户信息接口
   async getUserInfo(id) {
-    const statement = `SELECT id,name,age,iden,sex,phone,label FROM user WHERE id = ?;`
+    const statement = `SELECT id,name,age,iden,sex,phone,label,avatar_url FROM user WHERE id = ?;`
     return await request(statement, [id])
   }
 

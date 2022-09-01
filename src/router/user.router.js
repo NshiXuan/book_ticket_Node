@@ -26,4 +26,7 @@ userRouter.get('/info/:id', userController.info)
 // 完善用户信息接口
 userRouter.post('/perfect', verifyAuth, userController.perfectInfo)
 
+// 获取用户头像接口
+userRouter.get('/avatar/:userId', userController.avatarInfo)
+
 module.exports = userRouter

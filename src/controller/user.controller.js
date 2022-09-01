@@ -1,4 +1,8 @@
+const fs = require('fs')
+
+const { getAvatarByUserId } = require('../service/file.service')
 const userService = require('../service/user.service')
+const { AVATAR_PATH } = require('../constants/file-path')
 
 class UserController {
   async create(ctx, next) {
@@ -60,6 +64,15 @@ class UserController {
       status: 200,
       message: '修改成功'
     }
+  }
+
+  async avatarInfo(ctx, next) {
+    const { userId } = ctx.params
+    const result = await getAvatarByUserId(userId)
+    const avatarInfo = result[0]
+
+    ctx.response.set('content-type', avatarInfo.mimetype)
+    ctx.body = fs.createReadStream(`${AVATAR_PATH}/${avatarInfo.filename}`)
   }
 }
 
